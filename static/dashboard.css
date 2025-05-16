@@ -1,0 +1,107 @@
+body {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+.navbar {
+    background: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 12px 0 rgba(31, 38, 135, 0.07);
+}
+.navbar .brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6a82fb;
+    letter-spacing: 1px;
+}
+.navbar .logout {
+    color: #fc5c7d;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+.navbar .logout:hover {
+    color: #6a82fb;
+}
+.dashboard-content {
+    max-width: 700px;
+    margin: 3rem auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+h1 {
+    color: #232526;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+p {
+    color: #414345;
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+}
+.cta-btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-top: 1.5rem;
+}
+.cta-btn:hover {
+    background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+}
+.stock-table-container {
+    margin: 2rem 0 1.5rem 0;
+    overflow-x: auto;
+}
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background: #f8faff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(31,38,135,0.07);
+}
+.stock-table th, .stock-table td {
+    padding: 0.8rem 1rem;
+    text-align: center;
+}
+.stock-table th {
+    background: #6a82fb;
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 2px solid #e0e0e0;
+}
+.stock-table tr:nth-child(even) {
+    background: #f3f6fb;
+}
+.stock-table tr:hover {
+    background: #eaf1fb;
+    transition: background 0.2s;
+}

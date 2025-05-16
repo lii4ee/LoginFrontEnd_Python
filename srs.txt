@@ -1,0 +1,122 @@
+# **Software Requirements Specification (SRS)**
+
+## **Login Page – Algo Trading Website**
+
+---
+
+### **1. Introduction**
+
+#### 1.1 Purpose
+
+The purpose of this document is to define the requirements for the development of a **Login Page** for an Algo Trading Website. This page will serve as the secure entry point for users, allowing them to authenticate using their registered credentials.
+
+#### 1.2 Scope
+
+The Login Page is a sub-component of a larger algorithmic trading platform. This component will:
+
+* Authenticate users using a PostgreSQL database
+* Enforce password encryption
+* Manage user sessions
+* Redirect users to the dashboard upon successful login
+* Reject unauthorized or malformed login attempts
+
+---
+
+### **2. Overall Description**
+
+#### 2.1 Product Perspective
+
+The Login Page is a modular web component that will be integrated into the main trading web application. It will interact with backend services developed using **Python (Flask)** and a **PostgreSQL** database.
+
+#### 2.2 Product Functions
+
+* Input collection: Username/email and password
+* Input validation and sanitization
+* Password hash verification using `bcrypt`
+* Session management using `Flask-Login` or JWT
+* Redirect on success/failure
+* Login attempt tracking to prevent brute-force attacks
+
+#### 2.3 User Characteristics
+
+* Users are traders, analysts, and admins.
+* Most users are expected to have basic technical literacy.
+* Access via desktop/laptop web browsers is the primary mode.
+
+#### 2.4 Constraints
+
+* Developed using Python and Flask
+* PostgreSQL as the database
+* HTTPS required for production deployment
+* Cross-browser compatibility (Chrome, Firefox, Safari)
+
+#### 2.5 Assumptions and Dependencies
+
+* PostgreSQL is configured and accessible
+* Email/password credentials are pre-stored in the DB
+* Server is running Python 3.8 or higher
+* Deployment environment supports HTTPS
+
+---
+
+### **3. Specific Requirements**
+
+#### 3.1 Functional Requirements
+
+| ID  | Requirement Description                                                  |
+| --- | ------------------------------------------------------------------------ |
+| FR1 | The system shall allow users to input their email/username and password  |
+| FR2 | The system shall validate input to prevent SQL injection or XSS          |
+| FR3 | The system shall check hashed password using bcrypt                      |
+| FR4 | The system shall redirect to the user dashboard after a successful login |
+| FR5 | The system shall display error messages for invalid credentials          |
+| FR6 | The system shall log failed login attempts                               |
+| FR7 | The system shall throttle login attempts after multiple failures         |
+
+#### 3.2 Non-Functional Requirements
+
+| ID   | Requirement Description                                    |
+| ---- | ---------------------------------------------------------- |
+| NFR1 | The login request should respond within 2 seconds          |
+| NFR2 | Passwords must be stored using a secure hashing algorithm  |
+| NFR3 | All communications must use HTTPS                          |
+| NFR4 | The login form must be responsive and mobile-compatible    |
+| NFR5 | The system should be scalable to support concurrent logins |
+
+#### 3.3 Database Requirements
+
+* **User Table Structure:**
+
+| Field          | Type         | Constraints                  |
+| -------------- | ------------ | ---------------------------- |
+| id             | INTEGER      | PRIMARY KEY, AUTO\_INCREMENT |
+| email          | VARCHAR(255) | UNIQUE, NOT NULL             |
+| username       | VARCHAR(50)  | UNIQUE, NOT NULL             |
+| password\_hash | VARCHAR(255) | NOT NULL                     |
+| created\_at    | TIMESTAMP    | DEFAULT CURRENT\_TIMESTAMP   |
+
+#### 3.4 Interface Requirements
+
+* **Frontend Interface**: HTML/CSS form with fields for username/email and password.
+* **Backend API**:
+
+  * `POST /login`: Accepts JSON or form-data payload for credentials.
+  * Returns: `200 OK` (with session or token), `401 Unauthorized` (on failure).
+
+---
+
+### **4. Appendices**
+
+#### 4.1 Technologies Used
+
+* Frontend: HTML, CSS, JavaScript
+* Backend: Python, Flask
+* Database: PostgreSQL
+* Security: bcrypt, HTTPS
+* Session: Flask-Login or JWT
+
+#### 4.2 Future Enhancements
+
+* Add Multi-Factor Authentication (MFA)
+* CAPTCHA integration for bot prevention
+* Password reset flow via email OTP
